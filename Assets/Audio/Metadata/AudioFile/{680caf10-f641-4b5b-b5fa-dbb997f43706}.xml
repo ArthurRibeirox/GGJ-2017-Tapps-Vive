@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{680caf10-f641-4b5b-b5fa-dbb997f43706}">
+        <property name="assetPath">
+            <value>mus_guitarra.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>48</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d90e1c2b-d39c-45a3-9569-c5e60dad3b17}</destination>
+        </relationship>
+    </object>
+</objects>
