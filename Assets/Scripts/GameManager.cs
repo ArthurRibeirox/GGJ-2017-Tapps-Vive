@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     private static GameManager instance = null;
-    private static readonly object padlock = new object();
     private bool gameEnded;
-    private List<GameObject> crowd;
+    static private List<GameObject> crowd;
     private float time;
     private int score;
     private int dificulty;
@@ -43,9 +42,9 @@ public class GameManager : MonoBehaviour {
         if (!gameEnded)
         {
             time += Time.deltaTime;
-            if (time > 0.1f)
+            if (time > 0.05f)
             {
-                print(crowd[0].name);
+                print("will bore people");
                 int randomNumber = Random.Range(0, crowd.Count - 1);
                 crowd[randomNumber].GetComponent<CrowdAnimation>().startBoring();
                 time -= 2;
@@ -60,14 +59,11 @@ public class GameManager : MonoBehaviour {
     {
         get
         {
-            lock (padlock)
-            {
                 if (instance == null)
                 {
                     instance = new GameManager();
                 }
                 return instance;
-            }
         }
     }
 

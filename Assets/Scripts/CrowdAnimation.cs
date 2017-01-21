@@ -28,7 +28,7 @@ public class CrowdAnimation : MonoBehaviour {
             GameManager.Instance.addScore(50);
         }
         bored = false;
-
+        time = 0;
         int index = Random.Range(0, animations.Length);
         int index2 = Random.Range(0, idleAnimations.Length);
         animator.SetInteger("Celebration", index);
@@ -39,15 +39,23 @@ public class CrowdAnimation : MonoBehaviour {
 
     public void startBoring(){
         bored = true;
+        print("is bored");
+        animator.SetTrigger("Bore");
+        time = 0;
     }
 
 
     void Update(){
-        time += Time.deltaTime;
-        if(bored == true && animations.Length < time) {
-            int index = Random.Range(0, animations.Length);
-            gameObject.GetComponent<Animation>().Play(animations[index]);
-            gameObject.GetComponent<Animation>().PlayQueued("idle");
+        if (bored==true)
+        {
+            time += Time.deltaTime;
+            if (time > 5)
+            {
+                print("vazou");
+                Object.Destroy(gameObject);
+            }
+        } else
+        {
             time = 0;
         }
     }
