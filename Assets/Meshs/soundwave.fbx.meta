@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7b4fead50955b4945a0379c7963994b7
-timeCreated: 1485023462
+guid: 5d753463bc09f0448b5ab52d85bdf7cb
+timeCreated: 1485026563
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: palco
-    4300002: palcochao
+    4300000: Shape1
   materials:
     importMaterials: 1
     materialName: 0
