@@ -28,13 +28,14 @@ public class CrowdAnimation : MonoBehaviour {
     }
 
     public void startBoring(){
+        print("is bored");
         bored = true;
-
     }
 
     void Update(){
         time += Time.deltaTime;
         if(bored == true && animations.Length < time){
+            print("is bored");
         int index = Random.Range(0, animations.Length);
         gameObject.GetComponent<Animation>().Play(animations[index]);
         gameObject.GetComponent<Animation>().PlayQueued("idle");

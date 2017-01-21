@@ -40,7 +40,7 @@ public class CrowdGenerator : MonoBehaviour {
                 b += 1;
             }
         }
-
+        print(crowd[0].name);
         GameManager.Instance.setCrowd(crowd);
 
 	}
@@ -51,11 +51,9 @@ public class CrowdGenerator : MonoBehaviour {
         
 	}
 
-    public void endGame()
+
+    public List<GameObject> getCrowd()
     {
-        
-        foreach(GameObject person in crowd){
-            Object.Destroy(person);
-        }
+        return crowd;
     }
 }

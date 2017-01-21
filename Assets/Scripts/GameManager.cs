@@ -3,18 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+    private static GameManager instance = null;
+    private static readonly object padlock = new object();
     private bool gameEnded;
     private List<GameObject> crowd;
-    private List<bool> boredCrowd;
     private float time;
     private int score;
     private int dificulty;
 
-	// Use this for initialization
-	void Start () {
+    void Awake()
+    {
+        //Check if instance already exists
+        if (instance == null)
+
+            //if not, set instance to this
+            instance = this;
+
+        //If instance already exists and it's not this:
+        else if (instance != this)
+
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
+
+        //Sets this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
+    }
+
+    // Use this for initialization
+    void Start () {
+        crowd = new List<GameObject>();
         dificulty = 0;
         time      = 0;
         score     = 0;
+        gameEnded = false;
 	}
 	
 	// Update is called once per frame
@@ -24,6 +45,7 @@ public class GameManager : MonoBehaviour {
             time += Time.deltaTime;
             if (time > 0.1f)
             {
+                print(crowd[0].name);
                 int randomNumber = Random.Range(0, crowd.Count - 1);
                 crowd[randomNumber].GetComponent<CrowdAnimation>().startBoring();
                 time -= 2;
@@ -32,25 +54,30 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    private static GameManager instance;
-
     private GameManager() { }
 
     public static GameManager Instance
     {
         get
         {
-            if (instance == null)
+            lock (padlock)
             {
-                instance = new GameManager();
+                if (instance == null)
+                {
+                    instance = new GameManager();
+                }
+                return instance;
             }
-            return instance;
         }
     }
 
     public void endGame()
     {
         gameEnded = true;
+        foreach (GameObject person in crowd)
+        {
+            Object.Destroy(person);
+        }
         print(score);
     }
 
@@ -59,13 +86,14 @@ public class GameManager : MonoBehaviour {
         return gameEnded;
     }
 
-    public void setCrowd(List<GameObject> crowd)
+    public void setCrowd(List<GameObject> ncrowd)
     {
-        this.crowd = crowd;
-        for(int i = 0; i < crowd.Count; i++)
-        {
-            boredCrowd.Add(false);
-        }
+
+        crowd = new List<GameObject>();
+        print("loaded crowd");
+        
+        crowd = ncrowd;
+        print(crowd[0].name);
     }
 
     public void addScore(int points)

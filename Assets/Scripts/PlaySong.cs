@@ -34,8 +34,9 @@ public class PlaySong : MonoBehaviour {
         baseEventInstance.getPlaybackState(out playbackState);
 
 
-        if (playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
+        if (playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED && !GameManager.Instance.gameHasEnded())
         {
+            print("song ended");
            GameManager.Instance.endGame();
         }
         if (Input.GetMouseButtonDown(0))
