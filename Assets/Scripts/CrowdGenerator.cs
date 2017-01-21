@@ -14,9 +14,11 @@ public class CrowdGenerator : MonoBehaviour {
     public GameObject personObject;
     static public bool ended;
     public float time;
+    public int overrallAnimation;
 
     // Use this for initialization
     void Start () {
+        overrallAnimation = 3;
         ended = false;
         crowd = new List<GameObject>();
         int b = 0;
@@ -39,29 +41,19 @@ public class CrowdGenerator : MonoBehaviour {
             }
         }
 
-        print(b);
+        GameManager.Instance.setCrowd(crowd);
 
 	}
 
     // Update is called once per frame
     void Update()
     {
-        if (!ended) { 
-            time += Time.deltaTime;
-            if (time > 0.1f)
-            {
-                print("ficou entediado");
-                int randomNumber = Random.Range(0, crowd.Count - 1);
-                print(randomNumber);
-                crowd[randomNumber].GetComponent<CrowdAnimation>().startBoring();
-                time -= 2;
-            }
-        }
+        
 	}
 
-    public static void endGame()
+    public void endGame()
     {
-        ended = true;
+        
         foreach(GameObject person in crowd){
             Object.Destroy(person);
         }

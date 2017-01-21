@@ -36,7 +36,7 @@ public class PlaySong : MonoBehaviour {
 
         if (playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
         {
-            endGame();
+           GameManager.Instance.endGame();
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -60,8 +60,4 @@ public class PlaySong : MonoBehaviour {
         soloEventInstance.getVolume(out volume);
     }
 
-    public void endGame()
-    {
-        CrowdGenerator.endGame();
-    }
 }
