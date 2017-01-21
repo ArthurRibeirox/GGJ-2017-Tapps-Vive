@@ -30,18 +30,26 @@ public class PlaySong : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        FMOD.Studio.PLAYBACK_STATE playbackState;
+        baseEventInstance.getPlaybackState(out playbackState);
 
+
+        if (playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED && !GameManager.Instance.gameHasEnded())
+        {
+            print("song ended");
+           GameManager.Instance.endGame();
+        }
         if (Input.GetMouseButtonDown(0))
         {
             playGuitar();
-            
+            time = 0;
         }
 
 
         time += Time.deltaTime;
         if (time > 1)
         {
-            soloEventInstance.setVolume(Mathf.Max( volume - 0.3f,0));
+            soloEventInstance.setVolume(Mathf.Max( volume - 0.5f,0));
             soloEventInstance.getVolume(out volume);
             time = time - 1;
         }
@@ -52,4 +60,5 @@ public class PlaySong : MonoBehaviour {
         soloEventInstance.setVolume(Mathf.Min(1, volume + 0.3f));
         soloEventInstance.getVolume(out volume);
     }
+
 }
