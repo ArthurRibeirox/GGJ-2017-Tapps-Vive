@@ -29,10 +29,11 @@ public class PickStrokes : MonoBehaviour {
 	// }
 
 	public PlaySong playSongScript;
-
+	public WaveSpawner waveSpawnerScript;
 
     private void OnTriggerEnter(Collider other)
     {
     	playSongScript.playGuitar();
+    	waveSpawnerScript.SpawnStrings();
     }
 }

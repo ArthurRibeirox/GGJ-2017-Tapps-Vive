@@ -20,7 +20,7 @@ public class CrowdGenerator : MonoBehaviour {
             {
                 if (i*i + j*j <= radius) continue;
                 
-                Vector3 position = new Vector3(i + Random.Range(-variance, variance), -1.67f, j + Random.Range(-variance, variance));
+                Vector3 position = new Vector3(i + Random.Range(-variance, variance), -0.97f, j + Random.Range(-variance, variance));
 
                 Instantiate(
                     person,

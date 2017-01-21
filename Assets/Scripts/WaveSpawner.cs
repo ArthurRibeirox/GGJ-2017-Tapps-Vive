@@ -9,6 +9,7 @@ public class WaveSpawner : MonoBehaviour {
 
     public GameObject stringsSpawnPoint;
     public GameObject stringsWave;
+    public Vector3 stringDirection;
 
     public void SpawnHead () {
         Vector3 direction = transform.TransformDirection(headDirection);
@@ -23,6 +24,14 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     public void SpawnStrings () {
-        print("Spawn");
+        Vector3 direction = transform.TransformDirection(stringDirection);
+        GameObject wave = Instantiate(
+            stringsWave,
+            stringsSpawnPoint.transform.position,
+            Quaternion.LookRotation(direction)
+        );
+
+        SoundWavePropagator propagator = wave.GetComponent<SoundWavePropagator>();
+        propagator.direction = direction;
     }
 }
