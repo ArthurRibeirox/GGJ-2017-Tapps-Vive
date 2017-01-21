@@ -29,12 +29,12 @@ public class CrowdGenerator : MonoBehaviour {
             {
                 if (i*i + j*j <= radius) continue;
                 
-                Vector3 position = new Vector3(i + Random.Range(-variance, variance), -0.97f, j + Random.Range(-variance, variance));
+                Vector3 position = new Vector3(i + Random.Range(-variance, variance), -1.75f, j + Random.Range(-variance, variance));
 
                 personObject = Instantiate(
                     person,
                     position,
-                    Quaternion.LookRotation(new Vector3(-position.x, 0, -position.z))
+                    Quaternion.LookRotation(new Vector3(position.x, 0, position.z))
                 );
                 crowd.Add(personObject);
                 b += 1;
