@@ -33,13 +33,12 @@ public class PlaySong : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            soloEventInstance.setVolume(Mathf.Min(1, volume + 0.3f));
-            soloEventInstance.getVolume(out volume);
+            playGuitar();
+            
         }
 
 
         time += Time.deltaTime;
-        print(time);
         if (time > 1)
         {
             soloEventInstance.setVolume(Mathf.Max( volume - 0.3f,0));
@@ -47,4 +46,10 @@ public class PlaySong : MonoBehaviour {
             time = time - 1;
         }
 	}
+
+    public void playGuitar()
+    {
+        soloEventInstance.setVolume(Mathf.Min(1, volume + 0.3f));
+        soloEventInstance.getVolume(out volume);
+    }
 }
