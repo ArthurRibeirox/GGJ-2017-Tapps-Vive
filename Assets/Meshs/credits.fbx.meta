@@ -6,9 +6,17 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Bone004
+    100004: Bone005
+    100006: credits
     400000: //RootNode
+    400002: Bone004
+    400004: Bone005
+    400006: credits
     2300000: //RootNode
+    2300002: credits
     3300000: //RootNode
+    3300002: credits
     4300000: credits
   materials:
     importMaterials: 1

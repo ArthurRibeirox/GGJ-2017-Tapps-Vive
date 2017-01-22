@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         crowd     = new List<GameObject>();
-        time      = 5;
+        time      = 10;
         score     = 0;
         gameEnded = false;
         textObject.text = "0";
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
         if (!gameStarted) {
             time -= Time.deltaTime;
 
-            textObject.text = Mathf.Ceil(time).ToString();
+            // textObject.text = Mathf.Ceil(time).ToString();
             if (time < 0) {
                 time = -2;
                 startGame();
@@ -134,6 +134,7 @@ public class GameManager : MonoBehaviour {
     public void startGame()
     {
         scoreText.gameObject.GetComponent<Renderer>().enabled = true;
+        textObject.gameObject.GetComponent<Renderer>().enabled = true;
         gameStarted = true;
         playSong.StartSong();
         foreach (CrowdGenerator script in scripts)
