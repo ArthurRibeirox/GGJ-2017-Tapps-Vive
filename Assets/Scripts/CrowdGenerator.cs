@@ -40,7 +40,7 @@ public class CrowdGenerator : MonoBehaviour {
                 b += 1;
             }
         }
-        print(crowd[0].name);
+        print(b);
         GameManager.Instance.setCrowd(crowd);
 
 	}

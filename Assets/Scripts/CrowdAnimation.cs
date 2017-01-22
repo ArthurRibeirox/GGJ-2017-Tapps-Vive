@@ -6,8 +6,8 @@ public class CrowdAnimation : MonoBehaviour {
     public bool bored = false;
     public float time = 0;
 
-	string[] animations = { "Celebration" }; 
-    string[] idleAnimations = {"Idle", "Idle2"};
+	string[] animations = { "jump" }; 
+    string[] idleAnimations = {"idle"};
 
     private Animator animator;
     
@@ -15,7 +15,7 @@ public class CrowdAnimation : MonoBehaviour {
         animator = gameObject.GetComponent<Animator>();
         animator.speed = Random.Range(0.8f, 1);
 
-        int index = Random.Range(0, idleAnimations.Length);
+        int index = Random.Range(0, idleAnimations.Length) + 1;
         animator.SetInteger("Idle", index);
         animator.SetTrigger("StartAnimation");
 	}
@@ -23,14 +23,15 @@ public class CrowdAnimation : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        print("Triggered");
         if(bored == true)
         {
             GameManager.Instance.addScore(50);
         }
         bored = false;
 
-        int index = Random.Range(0, animations.Length);
-        int index2 = Random.Range(0, idleAnimations.Length);
+        int index = Random.Range(0, animations.Length) + 1;
+        int index2 = Random.Range(0, idleAnimations.Length) + 1;
         animator.SetInteger("Celebration", index);
         animator.SetInteger("Idle", index2);
         animator.SetTrigger("ChangeAnimation");
