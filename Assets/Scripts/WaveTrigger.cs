@@ -14,10 +14,23 @@ public class WaveTrigger : MonoBehaviour
     private void DoTriggerPress(object sender, ControllerInteractionEventArgs e)
     {
 
-        scripts[2].Generate();
-        // foreach (CrowdGenerator script in scripts)
-        // {
-        //     script.Generate();
-        // }
+        //scripts[2].Generate();
+        foreach (CrowdGenerator script in scripts)
+        {
+            script.Generate();
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            //scripts[2].Generate();
+            foreach (CrowdGenerator script in scripts)
+            {
+                
+                script.Generate();
+            }
+        }
     }
 }

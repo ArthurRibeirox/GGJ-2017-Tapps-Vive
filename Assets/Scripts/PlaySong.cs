@@ -23,7 +23,6 @@ public class PlaySong : MonoBehaviour {
 
         soloEventInstance.getParameter("Play", out shouldPlay);
         shouldPlay.setValue(0);
-
         soloEventInstance.start();
         time = 0f;
     }

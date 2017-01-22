@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
                 CrowdAnimation script = child.GetComponent<CrowdAnimation>();
                 if (script == null) return;
 
-                script.startBoring();
+                script.startBoring(obj);
             }
         }
     }

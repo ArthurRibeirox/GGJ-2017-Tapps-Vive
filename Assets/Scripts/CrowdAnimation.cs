@@ -5,6 +5,9 @@ using UnityEngine;
 public class CrowdAnimation : MonoBehaviour {
     public bool bored = false;
     public float time = 0;
+    private bool leaving = false;
+    private GameObject fan = null;
+    private Vector3 initialPosition;
 
 	string[] animations = { "jump" }; 
     string[] idleAnimations = {"idle"};
@@ -26,9 +29,15 @@ public class CrowdAnimation : MonoBehaviour {
         if(bored == true)
         {
             GameManager.Instance.addScore(50);
+            if (fan)
+            {
+                fan.transform.position = Vector3.MoveTowards(fan.transform.position, initialPosition, Time.deltaTime * 2);
+            }
+
         }
 
         bored = false;
+        leaving = false;
         time = 0;
 
         int index = Random.Range(0, animations.Length) + 1;
@@ -39,9 +48,11 @@ public class CrowdAnimation : MonoBehaviour {
     }
 
 
-    public void startBoring() {
+    public void startBoring(GameObject gmObject) {
         bored = true;
         animator.SetTrigger("Bore");
+        fan = gmObject;
+        initialPosition = gmObject.transform.position;
         time = 0;
     }
 
@@ -50,13 +61,32 @@ public class CrowdAnimation : MonoBehaviour {
         // Vector3 headPos = GameManager.Instance.head.transform.position;
         // transform.LookAt(new Vector3(headPos.x, transform.position.y, headPos.z));
 
-        if (bored)
+        if (bored && !leaving)
         {
             time += Time.deltaTime;
             if (time > 5)
             {
                 GameManager.Instance.removeFromCrowd(transform.parent.gameObject);
-                Object.Destroy(gameObject);
+                leaving = true;
+                animator.SetTrigger("Leaving");
+                time = 0;
+                
+            }
+        }
+        else if (leaving)
+        {
+            time += Time.deltaTime;
+            if (time > 10)
+            {
+                // Object.Destroy(gameObject);
+                fan.transform.position = Vector3.MoveTowards(fan.transform.position, initialPosition, Time.deltaTime * 2);
+                leaving = false;
+                bored = false;
+                time = 0;
+            }
+            else
+            {
+                fan.transform.Translate(Vector3.up * Time.deltaTime * 2, Space.World);
             }
         }
     }
