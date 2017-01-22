@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrowdGenerator : MonoBehaviour {
     public float density = 1;
     public float variance = 0.1f;
-    public GameObject person;
+    public GameObject[] prefabs;
     public GameObject crowdStart;
     public GameObject crowdEnd;
 
@@ -18,12 +18,20 @@ public class CrowdGenerator : MonoBehaviour {
                 
                 Vector3 position = new Vector3(i + Random.Range(-variance, variance), j + Random.Range(-variance, variance), 0);
                 
+                int index = Random.Range(0, prefabs.Length);
+
                 GameObject personObject = Instantiate(
-                    person,
-                    gameObject.transform
+                    prefabs[index]
                 );
-                personObject.transform.localPosition = position;
-                // personObject.transform.LookAt(new Vector3(position.x, position.z, 0));
+                personObject.transform.position = transform.TransformPoint(position);
+
+                Vector3 headPos = GameManager.Instance.head.transform.position;
+                personObject.transform.LookAt(new Vector3(headPos.x, personObject.transform.position.y, headPos.z));
+
+                if (Random.value > 0.5f) {
+                    Transform child = personObject.transform.GetChild(0);
+                    child.GetComponent<SpriteRenderer>().flipX = true;
+                }
 
                 GameManager.Instance.addToCrowd(personObject);
                 b += 1;

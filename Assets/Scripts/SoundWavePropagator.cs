@@ -18,14 +18,14 @@ public class SoundWavePropagator : MonoBehaviour {
 
     public float rotVelVariance = 20;
     private Vector3 rotVel;
-    private Renderer renderer;
+    private Renderer rend;
 
 
     void Awake ()
     {
         child.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)));
         rotVel = new Vector3(0, 0, Random.value > 0.5f ? -1.3f : 1.3f);
-        renderer = child.GetComponent<Renderer>();
+        rend = child.GetComponent<Renderer>();
     }
 
 
@@ -41,8 +41,8 @@ public class SoundWavePropagator : MonoBehaviour {
 
         child.transform.Rotate(rotVel);
 
-        Color color = renderer.material.GetColor("_TintColor");
-        renderer.material.SetColor("_TintColor", new Color(color.r, color.g, color.b, 0.9f - curLife / life));
+        Color color = rend.material.GetColor("_TintColor");
+        rend.material.SetColor("_TintColor", new Color(color.r, color.g, color.b, 0.9f - curLife / life));
 
         transform.localScale += expansion;
         transform.position += direction * velocity;

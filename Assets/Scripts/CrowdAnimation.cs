@@ -8,7 +8,6 @@ public class CrowdAnimation : MonoBehaviour {
 
 	string[] animations = { "jump" }; 
     string[] idleAnimations = {"idle"};
-    string[] boreAnimations = {"bore"};
 
     private Animator animator;
     
@@ -42,26 +41,23 @@ public class CrowdAnimation : MonoBehaviour {
 
     public void startBoring() {
         bored = true;
-        int index = Random.Range(0, boreAnimations.Length) + 1;
         animator.SetTrigger("Bore");
         time = 0;
     }
 
 
     void Update(){
-        Vector3 headPos = GameManager.Instance.head.transform.position;
-        transform.LookAt(new Vector3(headPos.x, transform.position.y, headPos.z));
+        // Vector3 headPos = GameManager.Instance.head.transform.position;
+        // transform.LookAt(new Vector3(headPos.x, transform.position.y, headPos.z));
 
-        if (bored==true)
+        if (bored)
         {
             time += Time.deltaTime;
             if (time > 5)
             {
+                GameManager.Instance.removeFromCrowd(transform.parent.gameObject);
                 Object.Destroy(gameObject);
             }
-        } else
-        {
-            time = 0;
         }
     }
 }

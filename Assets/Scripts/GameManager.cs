@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     private static GameManager instance = null;
+
+    public List<GameObject> crowd;
     private bool gameEnded;
-    static private List<GameObject> crowd;
     private float time;
     private int score;
-    private int dificulty;
+
+    public float boreRate = 0.5f;
+
+
+    public TextMesh textObject;
     public GameObject head;
 
     void Awake()
@@ -32,10 +37,10 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         crowd     = new List<GameObject>();
-        dificulty = 0;
         time      = -2;
         score     = 0;
         gameEnded = false;
+        textObject.text = "0";
 	}
 	
 	// Update is called once per frame
@@ -43,20 +48,23 @@ public class GameManager : MonoBehaviour {
         if (!gameEnded && crowd.Count > 0)
         {
             time += Time.deltaTime;
-            if (time > 3f)
+            if (time > boreRate)
             {
+                time = 0;
+
                 int randomNumber = Random.Range(0, crowd.Count - 1);
                 GameObject obj = crowd[randomNumber];
-                if (!obj) return;
+                if (obj == null || obj.transform.childCount == 0) return;
 
                 Transform child = obj.transform.GetChild(0);
-                if (!child) return;
+                if (child == null) return;
 
-                child.GetComponent<CrowdAnimation>().startBoring();
-                time = 0;
+                CrowdAnimation script = child.GetComponent<CrowdAnimation>();
+                if (script == null) return;
+
+                script.startBoring();
             }
         }
-
     }
 
     private GameManager() { }
@@ -65,11 +73,11 @@ public class GameManager : MonoBehaviour {
     {
         get
         {
-                if (instance == null)
-                {
-                    instance = new GameManager();
-                }
-                return instance;
+            if (instance == null)
+            {
+                instance = new GameManager();
+            }
+            return instance;
         }
     }
 
@@ -93,9 +101,15 @@ public class GameManager : MonoBehaviour {
         crowd.Add(obj);
     }
 
+    public void removeFromCrowd(GameObject obj)
+    {
+        crowd.Remove(obj);
+    }
+
     public void addScore(int points)
     {
         score += points;
+        textObject.text = score.ToString();
     }
 
 }
