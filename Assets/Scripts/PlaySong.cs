@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaySong : MonoBehaviour {
+    //[FMODUnity.EventRef]
+    //public string baseSound = "event:/Base";
     [FMODUnity.EventRef]
-    public string baseSound = "event:/Base";
-    [FMODUnity.EventRef]
-    public string soloSound = "event:/Solo";
+    public string soloSound = "event:/Player_gtr";
     FMOD.Studio.EventInstance soloEventInstance;
     FMOD.Studio.EventInstance baseEventInstance;
     private float volume;
@@ -15,9 +15,9 @@ public class PlaySong : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        baseEventInstance = FMODUnity.RuntimeManager.CreateInstance(baseSound);
+        //baseEventInstance = FMODUnity.RuntimeManager.CreateInstance(baseSound);
         soloEventInstance = FMODUnity.RuntimeManager.CreateInstance(soloSound);
-        baseEventInstance.start();
+        //baseEventInstance.start();
         soloEventInstance.setVolume(0f);
         soloEventInstance.getVolume(out volume);
         soloEventInstance.start();
@@ -33,7 +33,7 @@ public class PlaySong : MonoBehaviour {
         if (!GameManager.Instance.gameHasEnded())
         {
             FMOD.Studio.PLAYBACK_STATE playbackState;
-            baseEventInstance.getPlaybackState(out playbackState);
+            soloEventInstance.getPlaybackState(out playbackState);
 
 
             if (playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED && !GameManager.Instance.gameHasEnded())
@@ -60,6 +60,7 @@ public class PlaySong : MonoBehaviour {
 
     public void playGuitar()
     {
+        print("playing guitar");
         soloEventInstance.setVolume(Mathf.Min(1, volume + 0.3f));
         soloEventInstance.getVolume(out volume);
     }
