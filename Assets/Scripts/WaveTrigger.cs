@@ -4,7 +4,7 @@ using VRTK;
 
 public class WaveTrigger : MonoBehaviour
 {
-    public CrowdGenerator script;
+    public CrowdGenerator[] scripts;
 
     private void Start()
     {
@@ -13,6 +13,10 @@ public class WaveTrigger : MonoBehaviour
 
     private void DoTriggerPress(object sender, ControllerInteractionEventArgs e)
     {
-    	script.Generate();
+
+        foreach (CrowdGenerator script in scripts)
+        {
+            script.Generate();
+        }
     }
 }

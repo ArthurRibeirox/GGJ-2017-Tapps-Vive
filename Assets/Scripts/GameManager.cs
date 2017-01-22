@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     private float time;
     private int score;
     private int dificulty;
+    public GameObject head;
 
     void Awake()
     {
@@ -44,11 +45,14 @@ public class GameManager : MonoBehaviour {
             time += Time.deltaTime;
             if (time > 3f)
             {
-                print("will bore people");
                 int randomNumber = Random.Range(0, crowd.Count - 1);
-                print(crowd.Count);
-                print(randomNumber);
-                crowd[randomNumber].transform.GetChild(0).GetComponent<CrowdAnimation>().startBoring();
+                GameObject obj = crowd[randomNumber];
+                if (!obj) return;
+
+                Transform child = obj.transform.GetChild(0);
+                if (!child) return;
+
+                child.GetComponent<CrowdAnimation>().startBoring();
                 time = 0;
             }
         }

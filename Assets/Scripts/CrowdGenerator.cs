@@ -8,34 +8,22 @@ public class CrowdGenerator : MonoBehaviour {
     public GameObject person;
     public GameObject crowdStart;
     public GameObject crowdEnd;
-    public float radius = 9;
-    static public List<GameObject> crowd;
-    public CrowdAnimation crowdAnimation;
-    public GameObject personObject;
-    static public bool ended;
-    public float time;
-    public int overrallAnimation;
 
     // Use this for initialization
     public void Generate () {
-        overrallAnimation = 3;
-        ended = false;
-        crowd = new List<GameObject>();
         int b = 0;
-        time = 0;
 
-        for (float i = crowdStart.transform.position.x; i < crowdEnd.transform.position.x; i += density) {
-            for (float j = crowdStart.transform.position.z; j < crowdEnd.transform.position.z; j += density)
-            {
-                if (i*i + j*j <= radius) continue;
+        for (float i = crowdStart.transform.localPosition.x; i < crowdEnd.transform.localPosition.x; i += density) {
+            for (float j = crowdStart.transform.localPosition.y; j < crowdEnd.transform.localPosition.y; j += density) {
                 
-                Vector3 position = new Vector3(i + Random.Range(-variance, variance), -1.75f, j + Random.Range(-variance, variance));
-
-                personObject = Instantiate(
+                Vector3 position = new Vector3(i + Random.Range(-variance, variance), j + Random.Range(-variance, variance), 0);
+                
+                GameObject personObject = Instantiate(
                     person,
-                    position,
-                    Quaternion.LookRotation(new Vector3(position.x, 0, position.z))
+                    gameObject.transform
                 );
+                personObject.transform.localPosition = position;
+                // personObject.transform.LookAt(new Vector3(position.x, position.z, 0));
 
                 GameManager.Instance.addToCrowd(personObject);
                 b += 1;

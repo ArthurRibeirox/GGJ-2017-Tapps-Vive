@@ -42,7 +42,6 @@ public class CrowdAnimation : MonoBehaviour {
 
     public void startBoring() {
         bored = true;
-        print("is bored");
         int index = Random.Range(0, boreAnimations.Length) + 1;
         animator.SetTrigger("Bore");
         time = 0;
@@ -50,12 +49,14 @@ public class CrowdAnimation : MonoBehaviour {
 
 
     void Update(){
+        Vector3 headPos = GameManager.Instance.head.transform.position;
+        transform.LookAt(new Vector3(headPos.x, transform.position.y, headPos.z));
+
         if (bored==true)
         {
             time += Time.deltaTime;
             if (time > 5)
             {
-                print("vazou");
                 Object.Destroy(gameObject);
             }
         } else
