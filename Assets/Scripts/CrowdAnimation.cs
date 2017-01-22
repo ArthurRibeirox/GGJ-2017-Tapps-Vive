@@ -6,6 +6,7 @@ public class CrowdAnimation : MonoBehaviour {
     public bool bored = false;
     public float time = 0;
     private bool leaving = false;
+    private bool leaved = false;
     private GameObject fan = null;
     private Vector3 initialPosition;
 
@@ -31,7 +32,8 @@ public class CrowdAnimation : MonoBehaviour {
             GameManager.Instance.addScore(50);
             if (leaving)
             {
-                
+                print("start animation");
+                animator.Play("Staying", -1, time);
             }
 
         }
@@ -69,25 +71,27 @@ public class CrowdAnimation : MonoBehaviour {
                 GameManager.Instance.removeFromCrowd(transform.parent.gameObject);
                 leaving = true;
                 animator.SetTrigger("Leave");
-                time = 0;
-                
+                time = 0;     
             }
         }
-        else if (leaving)
+        else if (leaving && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
-            if (Input.GetMouseButtonDown(0))
+            time += Time.deltaTime;
+            //if (Input.GetMouseButtonDown(0) && !leaved)
+            //{
+            //    print("start animation");
+            //    print(animator.playbackTime);
+            //    animator.Play("Staying",-1,time);
+            //    time = 0;
+            //    leaving = false;
+            //    bored = false;
+            //}
+            
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
             {
-                print("start animation");
-                animator.speed = -1;
-                time = 0;
-                leaving = false;
-                bored = false;
-            }
-                time += Time.deltaTime;
-            if (time > 3)
-            {
-                animator.SetTrigger("Leave");
-                //Object.Destroy(gameObject);
+                
+                leaved = true;
+                Object.Destroy(gameObject);
                 //fan.transform.position = Vector3.MoveTowards(fan.transform.position, initialPosition, Time.deltaTime * 2);
                 //leaving = false;
                 //bored = false;
