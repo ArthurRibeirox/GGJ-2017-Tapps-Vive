@@ -6,11 +6,40 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: destroco
+    100004: luminarias
+    100006: luminarias_brilhos
+    100008: meteorito
+    100010: palcochao
+    100012: plataforma
     400000: //RootNode
+    400002: destroco
+    400004: luminarias
+    400006: luminarias_brilhos
+    400008: meteorito
+    400010: palcochao
+    400012: plataforma
     2300000: //RootNode
+    2300002: destroco
+    2300004: luminarias
+    2300006: luminarias_brilhos
+    2300008: meteorito
+    2300010: palcochao
+    2300012: plataforma
     3300000: //RootNode
+    3300002: destroco
+    3300004: luminarias
+    3300006: luminarias_brilhos
+    3300008: meteorito
+    3300010: palcochao
+    3300012: plataforma
     4300000: palco
     4300002: palcochao
+    4300004: meteorito
+    4300006: plataforma
+    4300008: destroco
+    4300010: luminarias_brilhos
+    4300012: luminarias
   materials:
     importMaterials: 1
     materialName: 0
