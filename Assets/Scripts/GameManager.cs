@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public List<GameObject> crowd;
     private bool gameEnded;
+    private bool gameStarted = false;
     private float time;
     private int score;
 
@@ -14,7 +15,11 @@ public class GameManager : MonoBehaviour {
 
 
     public TextMesh textObject;
+    public TextMesh scoreText;
     public GameObject head;
+
+    public CrowdGenerator[] scripts;
+    public PlaySong playSong;
 
     void Awake()
     {
@@ -37,7 +42,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         crowd     = new List<GameObject>();
-        time      = -2;
+        time      = 1;
         score     = 0;
         gameEnded = false;
         textObject.text = "0";
@@ -45,11 +50,21 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!gameEnded && crowd.Count > 0)
+        if (!gameStarted) {
+            time -= Time.deltaTime;
+
+            textObject.text = Mathf.Ceil(time).ToString();
+            if (time < 0) {
+                time = -2;
+                startGame();
+            }
+        }
+        else if (!gameEnded && crowd.Count > 0)
         {
             time += Time.deltaTime;
             if (time > boreRate)
             {
+                print("will bore!");
                 time = 0;
 
                 int randomNumber = Random.Range(0, crowd.Count - 1);
@@ -80,6 +95,19 @@ public class GameManager : MonoBehaviour {
             return instance;
         }
     }
+
+
+    public void startGame()
+    {
+        scoreText.gameObject.GetComponent<Renderer>().enabled = true;
+        gameStarted = true;
+        playSong.StartSong();
+        foreach (CrowdGenerator script in scripts)
+        {
+            script.Generate();
+        }
+    }
+
 
     public void endGame()
     {

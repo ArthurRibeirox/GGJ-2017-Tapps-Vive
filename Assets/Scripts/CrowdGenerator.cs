@@ -11,6 +11,7 @@ public class CrowdGenerator : MonoBehaviour {
 
     // Use this for initialization
     public void Generate () {
+        print("Generating");
         int b = 0;
 
         for (float i = crowdStart.transform.localPosition.x; i < crowdEnd.transform.localPosition.x; i += density) {
@@ -21,7 +22,8 @@ public class CrowdGenerator : MonoBehaviour {
                 int index = Random.Range(0, prefabs.Length);
 
                 GameObject personObject = Instantiate(
-                    prefabs[index]
+                    // prefabs[index]
+                    prefabs[1]
                 );
                 personObject.transform.position = transform.TransformPoint(position);
 
