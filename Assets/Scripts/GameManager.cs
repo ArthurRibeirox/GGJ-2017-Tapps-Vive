@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
     public int boreCount = 10;
     public float boreRadius = 3;
 
-
     public TextMesh textObject;
     public TextMesh scoreText;
     public GameObject head;
