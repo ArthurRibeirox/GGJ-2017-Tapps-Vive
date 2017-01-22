@@ -11,7 +11,8 @@ public class PlaySong : MonoBehaviour {
     [FMODUnity.EventRef]
     public string soloSound = "event:/Player_gtr";
     FMOD.Studio.EventInstance soloEventInstance;
-    FMOD.Studio.ParameterInstance shouldPlay; 
+    FMOD.Studio.ParameterInstance shouldPlay;
+    public float fadeTime = 0.5f;
 
     // FMOD.Studio.EventInstance baseEventInstance;
     private float volume;
@@ -52,10 +53,10 @@ public class PlaySong : MonoBehaviour {
 
 
             time += Time.deltaTime;
-            if (time > 1)
+            if (time > fadeTime)
             {
                 shouldPlay.setValue(0);
-                time -= 1;
+                time = 0;
             }
         }
     }
