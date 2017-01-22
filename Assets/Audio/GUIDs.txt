@@ -1,5 +1,0 @@
-{3bea4cfb-a689-47a9-aa29-f191f9a61d02} event:/Solo
-{3c999389-0852-4759-a0e4-76b374811745} event:/Base
-{4980a177-125d-4d71-b154-17bf49280179} bus:/
-{8435b1de-4513-4c83-9a40-0253b079350a} bus:/Reverb
-{6ad6868b-1657-4c26-aa5c-7409a7285ed4} bank:/Master Bank

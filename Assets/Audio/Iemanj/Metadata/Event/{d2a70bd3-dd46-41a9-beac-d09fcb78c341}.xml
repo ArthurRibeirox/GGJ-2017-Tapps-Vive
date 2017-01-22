@@ -63,7 +63,7 @@
     <object class="MarkerTrack" id="{e971de49-dcfa-47ad-99ee-d77b20e40bdc}"/>
     <object class="GroupTrack" id="{4af3fc91-3326-4e05-9e12-812bade3feca}">
         <relationship name="modules">
-            <destination>{623e383a-ef21-493b-b62d-0ba2c9c2f4ec}</destination>
+            <destination>{81fe9e9b-6347-4f1a-8662-24985874658a}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{717530b2-f8ac-411b-94e0-c852533ad24c}</destination>
@@ -71,7 +71,7 @@
     </object>
     <object class="Timeline" id="{3f9a38be-c2b2-40c0-8d40-e13a0beee84d}">
         <relationship name="modules">
-            <destination>{623e383a-ef21-493b-b62d-0ba2c9c2f4ec}</destination>
+            <destination>{81fe9e9b-6347-4f1a-8662-24985874658a}</destination>
         </relationship>
         <relationship name="markers">
             <destination>{1cc93abb-72d2-4463-8547-5ce8587ad1ef}</destination>
@@ -99,15 +99,15 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{252e40a3-d051-4815-8354-90355424b713}"/>
-    <object class="SingleSound" id="{623e383a-ef21-493b-b62d-0ba2c9c2f4ec}">
+    <object class="SingleSound" id="{81fe9e9b-6347-4f1a-8662-24985874658a}">
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
-            <value>32</value>
+            <value>153.44244897959183</value>
         </property>
         <relationship name="audioFile">
-            <destination>{62ac79ad-3a44-478d-83ee-c6c85972e226}</destination>
+            <destination>{2c4ca531-5c0c-4310-a941-8bc110a0147f}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{717530b2-f8ac-411b-94e0-c852533ad24c}">
@@ -129,7 +129,7 @@
             <value>0</value>
         </property>
         <property name="length">
-            <value>32</value>
+            <value>153.44244897959183</value>
         </property>
         <relationship name="timeline">
             <destination>{3f9a38be-c2b2-40c0-8d40-e13a0beee84d}</destination>

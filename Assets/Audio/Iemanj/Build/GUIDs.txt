@@ -1,8 +1,8 @@
 {d2a70bd3-dd46-41a9-beac-d09fcb78c341} event:/Band_Bass
 {2a18d1cb-65c5-4fda-bedb-22ff556d3011} event:/Band_Drums
 {f0a913cf-defc-4a9d-8435-8b29b7b74644} event:/Band_Keys
+{2c1ab6d0-181c-4cbe-9d9d-5db6c5dcaefb} event:/Player_Gtr
 {0e421a45-5e68-4a43-9175-a02618bc4b01} event:/Crowd_Amb
-{2c1ab6d0-181c-4cbe-9d9d-5db6c5dcaefb} event:/Player_gtr
 {81391e74-19e0-42a7-991e-4c4355eef93f} bus:/
 {dbe4ac0f-30d1-4248-aa02-d66fb8e393a6} bus:/Reverb
 {520c3762-25cd-4394-88f8-afa7273bb0c5} bank:/Master Bank
