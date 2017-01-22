@@ -22,8 +22,7 @@ public class CrowdGenerator : MonoBehaviour {
                 int index = Random.Range(0, prefabs.Length);
 
                 GameObject personObject = Instantiate(
-                    // prefabs[index]
-                    prefabs[1]
+                    prefabs[index]
                 );
                 personObject.transform.position = transform.TransformPoint(position);
 

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     private int score;
 
     public float boreRate = 0.5f;
+    public int boreCount = 10;
+    public float boreRadius = 3;
 
 
     public TextMesh textObject;
@@ -74,15 +76,48 @@ public class GameManager : MonoBehaviour {
                 Transform child = obj.transform.GetChild(0);
                 if (child == null) return;
 
-                CrowdAnimation script = child.GetComponent<CrowdAnimation>();
-                if (script == null) return;
+                TriggerBored(child);
 
-                script.startBoring();
+                int layerMask = 1 << 8;
+                Collider[] hitColliders = Physics.OverlapSphere(obj.transform.position, boreRadius, layerMask);
+
+                int[] iterator = createShuffleArray(hitColliders.Length);
+
+                for (int i = 0; i < hitColliders.Length && i < boreCount; i++) {
+                    int index = iterator[i];
+
+                    TriggerBored(hitColliders[index].gameObject.transform);
+                }
             }
         }
     }
 
     private GameManager() { }
+
+    public int[] createShuffleArray(int length) {
+
+        int [] arr = new int[length];
+        for (int i = 0; i < length; i++)
+            arr[i] = i;
+
+        for (int i = arr.Length - 1; i > 0; i--) {
+            int r = Random.Range(0, i);
+            int tmp = arr[i];
+            arr[i] = arr[r];
+            arr[r] = tmp;
+        }
+
+        return arr;
+    }
+
+    void TriggerBored(Transform child) {
+        CrowdAnimation script = child.GetComponent<CrowdAnimation>();
+        if (script == null) return;
+
+        script.startBoring();
+    }
+
+
 
     public static GameManager Instance
     {
