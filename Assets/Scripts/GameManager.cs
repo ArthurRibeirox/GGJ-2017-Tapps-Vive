@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         crowd     = new List<GameObject>();
-        time      = 1;
+        time      = 5;
         score     = 0;
         gameEnded = false;
         textObject.text = "0";

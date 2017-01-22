@@ -45,11 +45,11 @@ public class PlaySong : MonoBehaviour {
             // {
             //     GameManager.Instance.endGame();
             // }
-            if (Input.GetMouseButtonDown(0))
-            {
-                playGuitar();
-                time = 0;
-            }
+            // if (Input.GetMouseButtonDown(0))
+            // {
+            //     playGuitar();
+            //     time = 0;
+            // }
 
 
             time += Time.deltaTime;
