@@ -40,12 +40,11 @@ public class CrowdAnimation : MonoBehaviour {
     }
 
 
-    public void startBoring(){
+    public void startBoring() {
         bored = true;
         print("is bored");
         int index = Random.Range(0, boreAnimations.Length) + 1;
-        animator.SetInteger("Bore", index + 1);
-        animator.SetTrigger("ChangeAnimation");
+        animator.SetTrigger("Bore");
         time = 0;
     }
 

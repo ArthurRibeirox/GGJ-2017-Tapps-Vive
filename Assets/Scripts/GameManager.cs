@@ -30,24 +30,26 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        crowd = new List<GameObject>();
+        crowd     = new List<GameObject>();
         dificulty = 0;
-        time      = 0;
+        time      = -2;
         score     = 0;
         gameEnded = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (!gameEnded)
+        if (!gameEnded && crowd.Count > 0)
         {
             time += Time.deltaTime;
-            if (time > 0.05f)
+            if (time > 3f)
             {
                 print("will bore people");
                 int randomNumber = Random.Range(0, crowd.Count - 1);
-                crowd[randomNumber].GetComponent<CrowdAnimation>().startBoring();
-                time -= 2;
+                print(crowd.Count);
+                print(randomNumber);
+                crowd[randomNumber].transform.GetChild(0).GetComponent<CrowdAnimation>().startBoring();
+                time = 0;
             }
         }
 
@@ -82,14 +84,9 @@ public class GameManager : MonoBehaviour {
         return gameEnded;
     }
 
-    public void setCrowd(List<GameObject> ncrowd)
+    public void addToCrowd(GameObject obj)
     {
-
-        crowd = new List<GameObject>();
-        print("loaded crowd");
-        
-        crowd = ncrowd;
-        print(crowd[0].name);
+        crowd.Add(obj);
     }
 
     public void addScore(int points)

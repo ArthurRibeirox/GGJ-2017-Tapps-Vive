@@ -17,7 +17,7 @@ public class CrowdGenerator : MonoBehaviour {
     public int overrallAnimation;
 
     // Use this for initialization
-    void Start () {
+    public void Generate () {
         overrallAnimation = 3;
         ended = false;
         crowd = new List<GameObject>();
@@ -36,24 +36,12 @@ public class CrowdGenerator : MonoBehaviour {
                     position,
                     Quaternion.LookRotation(new Vector3(position.x, 0, position.z))
                 );
-                crowd.Add(personObject);
+
+                GameManager.Instance.addToCrowd(personObject);
                 b += 1;
             }
         }
+
         print(b);
-        GameManager.Instance.setCrowd(crowd);
-
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-	}
-
-
-    public List<GameObject> getCrowd()
-    {
-        return crowd;
-    }
 }
