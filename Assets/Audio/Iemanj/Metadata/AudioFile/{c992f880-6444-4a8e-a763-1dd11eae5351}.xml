@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{c992f880-6444-4a8e-a763-1dd11eae5351}">
+        <property name="assetPath">
+            <value>mus_jam_key (1).wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>32</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{e193c50b-e9cf-4d24-9677-e3eb7e80cca5}</destination>
+        </relationship>
+    </object>
+</objects>
