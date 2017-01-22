@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="Workspace" id="{c0c3f4af-092f-4499-a948-eca406589bd2}">
+        <relationship name="masterEventFolder">
+            <destination>{ac0176e3-a848-426a-b8a1-60d2e3f2b8cb}</destination>
+        </relationship>
+        <relationship name="masterTagFolder">
+            <destination>{1080d638-9d6b-4c7e-b9a3-fd96173604f1}</destination>
+        </relationship>
+        <relationship name="masterBankFolder">
+            <destination>{56d33729-851e-4a56-b7e1-da5117478cfb}</destination>
+        </relationship>
+        <relationship name="masterAssetFolder">
+            <destination>{e193c50b-e9cf-4d24-9677-e3eb7e80cca5}</destination>
+        </relationship>
+        <relationship name="mixer">
+            <destination>{b48b50d8-ce35-4fb6-b8de-3909d7dd6ae2}</destination>
+        </relationship>
+        <relationship name="platforms">
+            <destination>{facdaac4-7533-4492-a64a-3874ec2e126c}</destination>
+        </relationship>
+    </object>
+    <object class="Platform" id="{facdaac4-7533-4492-a64a-3874ec2e126c}">
+        <property name="hardwareType">
+            <value>0</value>
+        </property>
+        <property name="name">
+            <value>Desktop</value>
+        </property>
+        <property name="subDirectory">
+            <value>Desktop</value>
+        </property>
+        <property name="speakerFormat">
+            <value>3</value>
+        </property>
+    </object>
+</objects>

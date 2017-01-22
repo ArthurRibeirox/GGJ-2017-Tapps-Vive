@@ -8,6 +8,7 @@ public class CrowdAnimation : MonoBehaviour {
 
 	string[] animations = { "jump" }; 
     string[] idleAnimations = {"idle"};
+    string[] boreAnimations = {"bore"};
 
     private Animator animator;
     
@@ -23,12 +24,13 @@ public class CrowdAnimation : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Triggered");
         if(bored == true)
         {
             GameManager.Instance.addScore(50);
         }
+
         bored = false;
+        time = 0;
 
         int index = Random.Range(0, animations.Length) + 1;
         int index2 = Random.Range(0, idleAnimations.Length) + 1;
@@ -40,15 +42,25 @@ public class CrowdAnimation : MonoBehaviour {
 
     public void startBoring(){
         bored = true;
+        print("is bored");
+        int index = Random.Range(0, boreAnimations.Length) + 1;
+        animator.SetInteger("Bore", index + 1);
+        animator.SetTrigger("ChangeAnimation");
+        time = 0;
     }
 
 
     void Update(){
-        time += Time.deltaTime;
-        if(bored == true && animations.Length < time) {
-            int index = Random.Range(0, animations.Length);
-            gameObject.GetComponent<Animation>().Play(animations[index]);
-            gameObject.GetComponent<Animation>().PlayQueued("idle");
+        if (bored==true)
+        {
+            time += Time.deltaTime;
+            if (time > 5)
+            {
+                print("vazou");
+                Object.Destroy(gameObject);
+            }
+        } else
+        {
             time = 0;
         }
     }
