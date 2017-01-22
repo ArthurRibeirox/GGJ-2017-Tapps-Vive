@@ -29,9 +29,9 @@ public class CrowdAnimation : MonoBehaviour {
         if(bored == true)
         {
             GameManager.Instance.addScore(50);
-            if (fan)
+            if (leaving)
             {
-                fan.transform.position = Vector3.MoveTowards(fan.transform.position, initialPosition, Time.deltaTime * 2);
+                
             }
 
         }
@@ -68,25 +68,34 @@ public class CrowdAnimation : MonoBehaviour {
             {
                 GameManager.Instance.removeFromCrowd(transform.parent.gameObject);
                 leaving = true;
-                animator.SetTrigger("Leaving");
+                animator.SetTrigger("Leave");
                 time = 0;
                 
             }
         }
         else if (leaving)
         {
-            time += Time.deltaTime;
-            if (time > 10)
+            if (Input.GetMouseButtonDown(0))
             {
-                // Object.Destroy(gameObject);
-                fan.transform.position = Vector3.MoveTowards(fan.transform.position, initialPosition, Time.deltaTime * 2);
+                print("start animation");
+                animator.speed = -1;
+                time = 0;
                 leaving = false;
                 bored = false;
-                time = 0;
+            }
+                time += Time.deltaTime;
+            if (time > 3)
+            {
+                animator.SetTrigger("Leave");
+                //Object.Destroy(gameObject);
+                //fan.transform.position = Vector3.MoveTowards(fan.transform.position, initialPosition, Time.deltaTime * 2);
+                //leaving = false;
+                //bored = false;
+                //time = 0;
             }
             else
             {
-                fan.transform.Translate(Vector3.up * Time.deltaTime * 2, Space.World);
+                //fan.transform.Translate(Vector3.up * Time.deltaTime * 2, Space.World);
             }
         }
     }

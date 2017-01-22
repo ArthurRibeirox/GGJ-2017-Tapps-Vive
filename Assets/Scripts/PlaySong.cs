@@ -39,7 +39,7 @@ public class PlaySong : MonoBehaviour {
             {
                 GameManager.Instance.endGame();
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(3))
             {
                 playGuitar();
                 time = 0;
