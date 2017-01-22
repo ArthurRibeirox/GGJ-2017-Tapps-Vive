@@ -11,6 +11,7 @@ public class CrowdGenerator : MonoBehaviour {
 
     // Use this for initialization
     public void Generate () {
+        print("Generating");
         int b = 0;
 
         for (float i = crowdStart.transform.localPosition.x; i < crowdEnd.transform.localPosition.x; i += density) {

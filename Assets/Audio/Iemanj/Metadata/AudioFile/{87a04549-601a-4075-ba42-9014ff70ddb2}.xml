@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{87a04549-601a-4075-ba42-9014ff70ddb2}">
+        <property name="assetPath">
+            <value>crowdboo_var01.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>3.3435374149659864</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{e193c50b-e9cf-4d24-9677-e3eb7e80cca5}</destination>
+        </relationship>
+    </object>
+</objects>

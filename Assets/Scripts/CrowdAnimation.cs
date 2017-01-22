@@ -50,11 +50,11 @@ public class CrowdAnimation : MonoBehaviour {
     }
 
 
-    public void startBoring(GameObject gmObject) {
+    public void startBoring() {
         bored = true;
         animator.SetTrigger("Bore");
-        fan = gmObject;
-        initialPosition = gmObject.transform.position;
+        Transform parent = gameObject.transform.parent;
+        initialPosition = parent.position;
         time = 0;
     }
 
